@@ -1,0 +1,11 @@
+  From openjdk:8u181-jdk
+  RUN apt-get install wget && \
+      wget http://mirrors.fibergrid.in/apache//db/derby/db-derby-10.14.2.0/db-derby-10.14.2.0-bin.tar.gz && \
+      tar -xvzf db-derby-10.14.2.0-bin.tar.gz && \
+      mkdir /db-derby-10.14.2.0-bin/database  && \
+      mv db-derby-10.14.2.0-bin db-derby-10.14.2.0 ;
+  ENV DERBY_HOME=/db-derby-10.14.2.0
+  ENV PATH=$PATH:$DERBY_HOME/bin
+  EXPOSE 1527
+##CMD java -jar $DERBY_HOME/lib/derbyrun.jar server start -noSecurityManager -h  0.0.0.0
+  CMD java -jar $DERBY_HOME/lib/derbyrun.jar server start -h  0.0.0.0
